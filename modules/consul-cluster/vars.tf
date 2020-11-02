@@ -37,7 +37,12 @@ variable "key_data" {
 
 variable "allowed_inbound_cidr_blocks" {
   description = "A list of CIDR-formatted IP address ranges from which the Azure Instances will allow connections to Consul"
-  type        = "list"
+  type        = list
+}
+
+variable "default_password" {
+  type = string
+  description = "Default resource password. Will not be used after configuration, but should still be unique, robust and preferably random."
 }
 
 variable "custom_data" {
@@ -85,13 +90,13 @@ variable "cluster_tag_value" {
 
 variable "subnet_ids" {
   description = "The subnet IDs into which the Azure Instances should be deployed. We recommend one subnet ID per node in the cluster_size variable. At least one of var.subnet_ids or var.availability_zones must be non-empty."
-  type        = "list"
+  type        = list
   default     = []
 }
 
 variable "allowed_ssh_cidr_blocks" {
   description = "A list of CIDR-formatted IP address ranges from which the Azure Instances will allow SSH connections"
-  type        = "list"
+  type        = list
   default     = []
 }
 
@@ -117,13 +122,13 @@ variable "root_volume_delete_on_termination" {
 
 variable "target_group_arns" {
   description = "A list of target group ARNs of Application Load Balanacer (ALB) targets to associate with this ASG. If you're using a Elastic Load Balancer (AKA ELB Classic), use the load_balancers variable instead."
-  type        = "list"
+  type        = list
   default     = []
 }
 
 variable "load_balancers" {
   description = "A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you're using an Application Load Balancer (ALB), use the target_group_arns variable instead."
-  type        = "list"
+  type        = list
   default     = []
 }
 

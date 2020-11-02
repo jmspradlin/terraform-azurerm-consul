@@ -1,4 +1,4 @@
-terraform {
+erraform {
   required_version = ">= 0.10.0"
 }
 
@@ -14,17 +14,17 @@ resource "azurerm_public_ip" "consul_access" {
   domain_name_label = "${var.cluster_name}"
 }
 
-resource "azurerm_lb" "consul_access" {
-  count = "${var.associate_public_ip_address_load_balancer ? 1 : 0}"
-  name = "${var.cluster_name}_access"
-  location = "${var.location}"
-  resource_group_name = "${var.resource_group_name}"
+# resource "azurerm_lb" "consul_access" {
+#   count = "${var.associate_public_ip_address_load_balancer ? 1 : 0}"
+#   name = "${var.cluster_name}_access"
+#   location = "${var.location}"
+#   resource_group_name = "${var.resource_group_name}"
 
-  frontend_ip_configuration {
-    name = "PublicIPAddress"
-    public_ip_address_id = "${azurerm_public_ip.consul_access.id}"
-  }
-}
+#   frontend_ip_configuration {
+#     name = "PublicIPAddress"
+#     public_ip_address_id = "${azurerm_public_ip.consul_access.id}"
+#   }
+# }
 
 resource "azurerm_lb_nat_pool" "consul_lbnatpool" {
   count = "${var.associate_public_ip_address_load_balancer ? 1 : 0}"

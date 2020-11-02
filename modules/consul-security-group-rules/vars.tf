@@ -13,7 +13,7 @@ variable "resource_group_name" {
 
 variable "allowed_inbound_cidr_blocks" {
   description = "A list of CIDR-formatted IP address ranges from which the Azure Instances will allow connections to Consul"
-  type        = "list"
+  type        = list
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
